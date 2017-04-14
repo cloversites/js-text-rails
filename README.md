@@ -1,6 +1,6 @@
 # JsTextRails
 
-Transform text files into strings on the global JavaScript `TEXT` object.
+Transform text files into strings on a global JavaScript object.
 
 Why do this?  Your Rails application might serve up a single-page web
 application, which requires text assets (like SVGs).  You need these assets to
@@ -9,6 +9,12 @@ lag), nor embed them in the returned HTML (to keep the HTML response small).
 
 Especially in the case of SVGs, their contents are needed so they can be
 inserted into the document inline, so they can be styled with CSS.
+
+Support is currently available for the following text file types:
+
+- .svg files
+
+If you'd like more, please submit a PR.
 
 ## Installation
 
@@ -56,52 +62,34 @@ require 'js-text-rails'
 JsTextRails.install(assets)
 ```
 
-### Ruby
-
-If you need to call it from plain Ruby code, it’s very easy:
-
-```ruby
-require 'js-text-rails'
-string = JsTextRails.transform("What's up?") # => "'What\\'s up?'"
-# As JavaScript source code, the above Ruby string will become: 'What\'s up?'
-# Then, when printed to the screen, the text will again look like: What's up?
-```
-
 ### In your application
 
 `require` your files, e.g. in `app/assets/javascripts/application.js`:
 
 ```js
-//= require_tree ./icons
+//= require_tree ../images/icons
 ```
 
-Where `app/assets/javascripts/icons` contains the file `envelope.jstext.svg`.
+Where `app/assets/images/icons` contains the file `envelope.svg`.
 
-Anywhere in your application, access the text file contents via the global
-`TEXT` variable:
+Anywhere in your application's JavaScript code, access the text file contents
+via the global `SVG` variable:
 
 ```js
-var envelopeIcon = TEXT['icons/envelope.jstext.svg'];
+var envelopeIcon = SVG['icons/envelope'];
 // Do something with `envelopeIcon`...
 ```
 
 Here is a practical example of inserting an SVG inline:
 
 ```js
-function stripXmlDeclaration (content) {
-  return content.replace(/^\s*<\?xml(\s)+version=[\'\"](\d)*.(\d)*[\'\"](\s)*\?>/im, '');
-}
-function getIcon (path) {
-  var icon = TEXT['icons/' + path + '.jstext.svg'];
-  return stripXmlDeclaration(icon);
-}
-document.querySelector('#email-icon').innerHTML = getIcon('envelope');
+document.querySelector('#email-icon').innerHTML = SVG['icons/envelope'];
 ```
 
 Or, in a JST template:
 
 ```html
-<span id="email-icon"><%= getIcon('envelope') %></span> Email me at <%- @email %>!
+<span id="email-icon"><%= SVG['icons/envelope'] %></span> Email me at <%- @email %>!
 ```
 
 ## Development

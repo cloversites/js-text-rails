@@ -6,7 +6,6 @@ rvm:
   - 2.4.1
 cache: bundler
 gemfile:
-  - sprockets2.gemfile
   - sprockets3.gemfile
   - sprockets4.gemfile
 before_install: gem install bundler -v 1.14.6

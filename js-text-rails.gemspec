@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Jackson Ray Hamilton"]
   spec.email         = ["jackson@jacksonrayhamilton.com"]
 
-  spec.summary       = %q{Transform text files into strings on the global JavaScript TEXT object.}
+  spec.summary       = %q{Transform text files into strings on a global JavaScript object.}
   spec.homepage      = "https://github.com/jacksonrayhamilton/js-text-rails"
   spec.license       = "MIT"
 

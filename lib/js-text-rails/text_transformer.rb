@@ -1,12 +1,28 @@
 module JsTextRails
   class TextTransformer
-    # Take text and return a JavaScript code representation of the text.
-    def transform(text)
-      "'#{escape_js_string(text)}'"
+    def self.default_namespace
+      'this.TEXT'
     end
 
-    private
+    def initialize(options = {})
+      @namespace = options[:namespace] || self.class.default_namespace
+    end
 
+    # Take `data` and store it at a `key` in a JS namespace.
+    def transform(key, data)
+      <<-TEXT
+(function() { #{@namespace} || (#{@namespace} = {}); #{@namespace}[#{key}] = '#{sanitize_js_string(data)}';
+}).call(this);
+      TEXT
+    end
+
+    # Can be overridden by subclasses.
+    def sanitize_js_string(text)
+      escape_js_string(text)
+    end
+
+    # Make text content safe and correct when evaluated in JS.
+    #
     # TODO: Test this.
     def escape_js_string(text)
       text
