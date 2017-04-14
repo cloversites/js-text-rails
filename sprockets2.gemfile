@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+
+gemspec
+
+gem 'rails',     '< 5'
+gem 'sprockets', '>= 2.12.4', '< 3.0'
