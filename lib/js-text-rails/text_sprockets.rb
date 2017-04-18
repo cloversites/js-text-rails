@@ -8,7 +8,7 @@ module JsTextRails
     # Sprockets 3 and 4 API
     def self.call(input)
       name = input[:name]
-      data = input[:data].gsub(/$(.)/m, "\\1  ").strip
+      data = input[:data]
       run(name, data)
     end
 
