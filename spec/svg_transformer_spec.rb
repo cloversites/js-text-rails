@@ -1,6 +1,6 @@
-require "spec_helper"
+require 'spec_helper'
 
-RSpec.describe JsTextRails::SvgTransformer do
+describe JsTextRails::SvgTransformer do
   before(:each) do
     @svg_transformer = JsTextRails::SvgTransformer.new
   end

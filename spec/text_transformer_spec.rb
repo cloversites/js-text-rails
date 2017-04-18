@@ -1,6 +1,6 @@
-require "spec_helper"
+require 'spec_helper'
 
-RSpec.describe JsTextRails::TextTransformer do
+describe JsTextRails::TextTransformer do
   before(:each) do
     @text_transformer = JsTextRails::TextTransformer.new
   end
