@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["jackson@jacksonrayhamilton.com"]
 
   spec.summary       = %q{Transform text files into strings on a global JavaScript object.}
-  spec.homepage      = "https://github.com/jacksonrayhamilton/js-text-rails"
+  spec.homepage      = "https://github.com/cloversites/js-text-rails"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|

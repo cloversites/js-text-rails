@@ -107,7 +107,7 @@ to [rubygems.org](https://rubygems.org).
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at
-https://github.com/jacksonrayhamilton/js-text-rails.
+https://github.com/cloversites/js-text-rails.
 
 ## License
 
