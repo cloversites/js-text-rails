@@ -7,16 +7,15 @@ module JsTextRails
     end
 
     def sanitize_js_string(text)
-      strip_xml_declaration(text)
-      escape_js_string(text)
+      text = strip_xml_declaration(text)
+      text = escape_js_string(text)
+      text
     end
 
     # Strips <?xml ...?> declarations so that external SVG and XML documents can
     # be added to a document without worry.
-    #
-    # TODO: Test this.
     def strip_xml_declaration(text)
-      text.gsub(/^\s*<\?xml(\s)+version=[\'\"](\d)*.(\d)*[\'\"](\s)*\?>/im, '')
+      text.gsub(/^\s*<\?xml.*?\?>\s*/im, '')
     end
   end
 end
