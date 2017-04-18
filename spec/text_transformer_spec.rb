@@ -12,9 +12,9 @@ RSpec.describe JsTextRails::TextTransformer do
   end
 
   it "generates JS code" do
-    expect(@text_transformer.transform('question'.inspect, "What's up?")).to eq(
+    expect(@text_transformer.transform("question\\state-of-being", "What's up?")).to eq(
       <<-TEXT
-(function() { this.TEXT || (this.TEXT = {}); this.TEXT["question"] = 'What\\'s up?';
+(function() { this.TEXT || (this.TEXT = {}); this.TEXT['question\\\\state-of-being'] = 'What\\'s up?';
 }).call(this);
       TEXT
     )

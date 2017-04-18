@@ -10,8 +10,10 @@ module JsTextRails
 
     # Take `data` and store it at a `key` in a JS namespace.
     def transform(key, data)
+      key = sanitize_js_string(key)
+      data = sanitize_js_string(data)
       <<-TEXT
-(function() { #{@namespace} || (#{@namespace} = {}); #{@namespace}[#{key}] = '#{sanitize_js_string(data)}';
+(function() { #{@namespace} || (#{@namespace} = {}); #{@namespace}['#{key}'] = '#{data}';
 }).call(this);
       TEXT
     end
