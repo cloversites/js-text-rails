@@ -22,8 +22,6 @@ module JsTextRails
     end
 
     # Make text content safe and correct when evaluated in JS.
-    #
-    # TODO: Test this.
     def escape_js_string(text)
       text
         .gsub(/(['\\])/, "\\\\\\1")
