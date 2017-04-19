@@ -104,7 +104,7 @@ document.querySelector('#email-icon').innerHTML = SVG['icons/envelope'];
 Or, in a JST template:
 
 ```html
-<span id="email-icon"><%= SVG['icons/envelope'] %></span> Email me at <%- @email %>!
+<span id="email-icon"><%- SVG['icons/envelope'] %></span> Email me at <%= @email %>!
 ```
 
 ## Development
