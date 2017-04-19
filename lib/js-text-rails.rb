@@ -4,7 +4,7 @@ module JsTextRails
 
   # Add JsText to Sprockets environment in `assets`.
   def self.install(assets, params = {})
-    SvgSprockets.register_transformer(svg_transformer)
+    SvgSprockets.register_transformer(svg_transformer(params))
     SvgSprockets.install(assets)
   end
 

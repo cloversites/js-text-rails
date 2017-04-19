@@ -10,5 +10,6 @@ end
 module App
   class Application < Rails::Application
     config.assets.enabled = true
+    config.js_text_rails.namespace = 'RAILS_TEXT'
   end
 end

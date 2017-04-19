@@ -19,4 +19,14 @@ describe JsTextRails::TextTransformer do
       TEXT
     )
   end
+
+  it "customizes the namespace" do
+    @text_transformer = JsTextRails::TextTransformer.new(namespace: 'App.Text')
+    expect(@text_transformer.transform("key", "value")).to eq(
+      <<-TEXT
+(function() { App.Text || (App.Text = {}); App.Text['key'] = 'value';
+}).call(this);
+      TEXT
+    )
+  end
 end

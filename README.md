@@ -12,7 +12,7 @@ inserted into the document inline, so they can be styled with CSS.
 
 Support is currently available for the following text file types:
 
-- .svg files
+- ".svg" files
 
 If you'd like more, please submit a PR.
 
@@ -42,7 +42,22 @@ After adding the gem to your Gemfile, clear your cache:
 rake tmp:clear
 ```
 
-To disable it just remove transformer:
+Normally, text file contents are stored in a global object named `TEXT` or `SVG`
+(for ".svg" files).  You may customize the namespace used by all text files by
+setting `config.js_text_rails.namespace`.  e.g., in `app/config/application.rb`:
+
+```ruby
+module App
+  class Application < Rails::Application
+    config.js_text_rails.namespace = 'App.Text'
+  end
+end
+```
+
+Then all text file contents would instead be stored in the global object `App`
+on a property called `Text`.
+
+To disable the gem, just remove transformer:
 
 ```ruby
 JsTextRails.uninstall(Rails.application.assets)
@@ -59,7 +74,7 @@ assets = Sprockets::Environment.new do |env|
 end
 
 require 'js-text-rails'
-JsTextRails.install(assets)
+JsTextRails.install(assets, namespace: 'App.Text')
 ```
 
 ### In your application
